@@ -137,8 +137,8 @@ class Webfaction {
      */
     public function __construct(array $config)
     {
-        if (empty($config)) {
-            throw new WebfactionException("Config file is empty!");            
+        if (is_null($config['username']) && is_null($config['password'])) {
+            throw new WebfactionException("Config file is empty! Please add credentials to the .env file!");            
         }
 
         foreach ($config as $key => $value) {
