@@ -1,0 +1,36 @@
+{
+    "name": "subdesign/laravel-webfaction",
+    "description": "Webfaction API wrapper for Laravel",
+    "keywords": ["laravel", "webfaction", "api", "php"],
+    "homepage": "https://github.com/subdesign/laravel-webfaction",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Barna Szalai",
+            "email": "szalai.b@gmail.com"
+        }
+    ],
+    "type": "library",
+    "require": {
+        "phpxmlrpc/phpxmlrpc": "^4.0"
+    },
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Subdesign\\LaravelWebfaction\\": "src/"
+        },
+        "files": [
+          "src/Helpers/helpers.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Subdesign\\LaravelWebfaction\\WebfactionServiceProvider"
+            ],
+            "aliases": {
+                "Webfaction": "Subdesign\\LaravelWebfaction\\Facades\\Webfaction"
+            }
+        }
+    }
+}
