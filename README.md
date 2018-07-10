@@ -22,7 +22,7 @@ Subdesign\LaravelWebfaction\WebfactionServiceProvider::class,
 
 Add Facade to the `config/app.php`
 ```bash
-"Webfaction" => Subdesign\LaravelWebfaction\Facades\Webfaction::class,
+'Webfaction' => Subdesign\LaravelWebfaction\Facades\Webfaction::class,
 ```
 
 Publish the `webfaction.php` config file
