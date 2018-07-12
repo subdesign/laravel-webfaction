@@ -39,7 +39,7 @@ WF_MACHINE=WebXXX
 ```
 
 Where `WF_USERNAME` and `WF_PASSWORD` is your control panel username and password. 
-If your have multiple machines, you can define the machine name `WF_MACHINE` like Web123 on which one you want to use the API.
+If you have multiple machines, you can define the machine name `WF_MACHINE` like Web123 on which one you want to use the API.
 
 ## Dependency
 
