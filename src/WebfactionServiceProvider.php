@@ -25,6 +25,8 @@ class WebfactionServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->mergeConfigFrom(__DIR__.'/../config/webfaction.php', 'webfaction');
+
         $this->app->singleton('webfaction', function ($app) {            
             return new Webfaction($app->config->get('webfaction', []));
         });
