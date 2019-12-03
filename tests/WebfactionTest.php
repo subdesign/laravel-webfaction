@@ -4,6 +4,7 @@ namespace Subdesign\LaravelWebfaction\Tests;
 
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Subdesign\LaravelWebfaction\Tests\TestCase;
 
 class WebfactionTest extends TestCase
 {
