@@ -30,7 +30,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Subdesign\\LaravelWebfaction\\Tests\\": "tests/"
+            "Subdesign\\LaravelWebfaction\\Tests\\": "tests"
         }
     },
     "extra": {

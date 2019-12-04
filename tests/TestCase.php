@@ -3,8 +3,9 @@
 namespace Subdesign\LaravelWebfaction\Tests;
 
 use Subdesign\LaravelWebfaction\WebfactionServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
-class TestCase extends \Orchestra\Testbench\TestCase
+abstract class TestCase extends Orchestra
 {
     public function setUp(): void
     {
