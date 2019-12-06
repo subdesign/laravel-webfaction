@@ -78,7 +78,10 @@ webfaction()->list_mailboxes();
 
 ## Testing
 
-Coming soon..
+Run
+```bash
+composer test
+```
 
 ## Credits
 

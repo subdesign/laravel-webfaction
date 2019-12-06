@@ -9,8 +9,17 @@
          convertWarningsToExceptions="true"
          processIsolation="false"
          stopOnFailure="false">
+    <php>
+        <env name="APP_KEY" value=""/>
+        <env name="WF_USERNAME" value=""/>
+        <env name="WF_PASSWORD" value=""/>
+        <env name="WF_MACHINE" value=""/>
+        <env name="WF_VERSION" value=""/>
+        <env name="WF_DEBUG" value="false"/>
+        <env name="WF_DEBUG_LEVEL" value="2"/>
+    </php>
     <testsuites>
-        <testsuite name="Spatie Test Suite">
+        <testsuite name="Tests">
             <directory>tests</directory>
         </testsuite>
     </testsuites>

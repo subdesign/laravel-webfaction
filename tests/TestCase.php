@@ -23,7 +23,6 @@ abstract class TestCase extends Orchestra
         return [WebfactionServiceProvider::class];
     }
 
-
     /**
      * Define environment setup.
      *
