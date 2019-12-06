@@ -36,10 +36,13 @@ Set the credentials and other data in the `.env` file
 WF_USERNAME=  
 WF_PASSWORD=
 WF_MACHINE=WebXXX
+WF_DEBUG=false
+WF_DEBUG_LEVEL=2
 ```
 
 Where `WF_USERNAME` and `WF_PASSWORD` is your control panel username and password. 
 If you have multiple machines, you can define the machine name `WF_MACHINE` like Web123 on which one you want to use the API.
+`WF_DEBUG` will show debug information in the response, with `WF_DEBUG_LEVEL` you can set debug verbosity. Values: 0, 1 and 2.
 
 ## Dependency
 

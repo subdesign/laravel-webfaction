@@ -12,7 +12,7 @@ use Subdesign\LaravelWebfaction\Exceptions\WebfactionException;
  *
  * @version 1.0.0
  * @author Barna Szalai <szalai.b@gmail.com>
- * 
+ *
  */
 class Webfaction {
 
@@ -20,35 +20,35 @@ class Webfaction {
 
     /**
      * Session ID for API calls
-     * 
+     *
      * @var string
      */
     protected $sessionId;
 
     /**
      * Control panel username
-     * 
+     *
      * @var string
      */
     protected $username;
 
     /**
      * Control panel password
-     * 
+     *
      * @var string
      */
     protected $password;
 
     /**
      * Web server name
-     * 
+     *
      * @var string
      */
     protected $machine;
 
     /**
      * API version number
-     * 
+     *
      * @var integer
      */
     protected $version;
@@ -57,21 +57,21 @@ class Webfaction {
 
     /**
      * API client
-     * 
+     *
      * @var object
      */
     protected $client;
 
     /**
      * API call response
-     * 
+     *
      * @var object
      */
     protected $response;
 
     /**
      * Valid api callback based on : https://docs.webfaction.com/xmlrpc-api/apiref.html
-     * 
+     *
      * @var [type]
      */
     protected static $validCallbacks = [
@@ -132,13 +132,13 @@ class Webfaction {
 
     /**
      * Build up properties from config, and run login
-     * 
+     *
      * @param array $config [description]
      */
     public function __construct(array $config)
     {
         if (is_null($config['username']) && is_null($config['password'])) {
-            throw new WebfactionException("Config file is empty! Please add credentials to the .env file!");            
+            throw new WebfactionException("Config file is empty! Please add credentials to the .env file!");
         }
 
         foreach ($config as $key => $value) {
@@ -150,7 +150,7 @@ class Webfaction {
 
     /**
      * Log in to the service
-     * 
+     *
      * @return [type] [description]
      */
     private function login()
@@ -164,7 +164,7 @@ class Webfaction {
 
     /**
      * Get the XML-RPC client
-     * 
+     *
      * @return object
      */
     public function getClient()
@@ -173,38 +173,42 @@ class Webfaction {
             $this->client = new Client(self::END_POINT);
         }
 
+        if ($this->debug) {
+            $this->setDebug();
+        }
+
         return $this->client;
     }
 
     /**
      * Handle all API calls other than 'login'
-     * 
+     *
      * @param  string $name      [description]
      * @param  array  $arguments [description]
      * @return object
      */
     public function __call($name, array $arguments)
-    {        
+    {
         if (in_array($name, self::$validCallbacks)) {
             return $this->sendRequest($name, $arguments);
         }
 
         if ($name == 'login') {
-            throw new WebfactionException("You can't call 'login' directly");        
+            throw new WebfactionException("You can't call 'login' directly");
         } else {
-            throw new WebfactionException("Following Api method not found: ".$name);        
+            throw new WebfactionException("Following Api method not found: ".$name);
         }
     }
 
     /**
      * Send the request to API
-     * 
+     *
      * @param  string $name      [description]
      * @param  array  $arguments [description]
      * @return mixed            [description]
      */
     public function sendRequest($name, array $arguments)
-    {        
+    {
         $payloadArray = [];
 
         if ($name !== 'login') {
@@ -215,22 +219,30 @@ class Webfaction {
             $arguments = array_flatten($arguments);
         }
 
-        foreach ($arguments as $argument) {            
-            $payloadArray[] = new Value($argument);                
+        foreach ($arguments as $argument) {
+            $payloadArray[] = new Value($argument);
         }
-        
+
         $this->response = $this->getClient()->send(new Request($name, $payloadArray));
 
         if ($this->response->faultCode() > 0) {
             $this->apiError($this->response->faultCode(), $this->response->faultString());
         }
-        
-        return $this->response->value();                    
+
+        return $this->response->value();
+    }
+
+    /**
+     * Show debug for the API request
+     */
+    private function setDebug()
+    {
+        $this->client->setDebug($this->debug_level);
     }
 
     /**
      * Throw exception on API error
-     * 
+     *
      * @param  integer $code    [description]
      * @param  string  $message [description]
      * @return object           [description]
