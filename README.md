@@ -1,3 +1,7 @@
+## DEPRECATION WARNING 
+
+Webfaction will end it's services possibly from May 2021, so the package won't be maintained in the future.
+
 # Laravel-Webfaction
 
 Webfaction API wrapper for Laravel
